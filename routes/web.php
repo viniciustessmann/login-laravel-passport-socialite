@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('auth/signup', 'AuthController@signup');
+    Route::get('callback', 'AuthController@callbackProvider');
+});
